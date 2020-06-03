@@ -99,12 +99,14 @@ class MyLabel(QLabel):
 		boPainter=QPainter(board)
 		boPainter.setCompositionMode(QPainter.CompositionMode_Source)
 		if self.dst_img is not None and self.sourceMode:
-			img=QPixmap(QImage(cv2.cvtColor(self.dst_img,cv2.COLOR_BGR2RGB).data,self.dst_img.shape[1],self.dst_img.shape[0],QImage.Format_RGB888))
+			img=QPixmap(QImage(cv2.cvtColor(self.dst_img,cv2.COLOR_BGR2RGB).data,self.dst_img.shape[1],self.dst_img.shape[0],
+				self.dst_img.shape[1]*3,QImage.Format_RGB888))
 			img=img.scaledToWidth(self.width())
 			boPainter.drawPixmap(0,0,img)
 		if self.src_img is not None:
 			img=cv2.merge((self.src_img,self.mask))
-			img=QPixmap(QImage(img.data,self.src_img.shape[1],self.src_img.shape[0],QImage.Format_ARGB32))
+			img=QPixmap(QImage(img.data,self.src_img.shape[1],self.src_img.shape[0],
+				self.src_img.shape[1]*4,QImage.Format_ARGB32))
 			img=img.scaledToWidth(int((self.width())*self.zoom))
 			if self.dst_img is not None and self.sourceMode:
 				imgpainter=QPainter(img)
@@ -124,7 +126,8 @@ class MyLabel(QLabel):
 		board.fill(Qt.transparent)
 		boPainter = QPainter(board)
 		boPainter.setCompositionMode(QPainter.CompositionMode_Source)
-		dis=QPixmap(QImage(cv2.cvtColor(self.result_img,cv2.COLOR_BGR2RGB).data,self.result_img.shape[1],self.result_img.shape[0],QImage.Format_RGB888))
+		dis=QPixmap(QImage(cv2.cvtColor(self.result_img,cv2.COLOR_BGR2RGB).data,self.result_img.shape[1],self.result_img.shape[0],
+			self.result_img.shape[1]*3,QImage.Format_RGB888))
 		dis=dis.scaledToWidth(self.width())
 		boPainter.drawPixmap(0,0,dis)
 		boPainter.end()
