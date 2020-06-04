@@ -13,7 +13,7 @@
 并安装`pyqt5`,`pyqt5-tools`, `numpy`, `opencv`, `opencv-contrib` ,  `tensorflow`, `scikit-image` , `chainer`
 
 ```
-$ pip install PyQt5 pyqt5-tools numpy opencv-python opencv-contrib-python tensorflow==1.14.0 scikit image chainer
+$ pip install PyQt5 pyqt5-tools numpy opencv-python opencv-contrib-python tensorflow==1.14.0 scikit-image chainer
 ```
 
 （注：最好使用1.14.0版本的tensorflow，其他版本可能会存在问题）
