@@ -6,10 +6,15 @@
 
 简化版（仅保留泊松编辑功能）见：[Poisson Image Editing UI](https://github.com/Lllmmr/Poisson-Image-Editing-UI)
 
-**Reference:**
-**Deep Image Harmonization**: https://github.com/bcmi/Image_Harmonization_Datasets/tree/master/DIH
+####参考内容
 
-**GP-GAN**:https://github.com/wuhuikai/GP-GAN
+[Deep Image Harmonization](https://github.com/bcmi/Image_Harmonization_Datasets/tree/master/DIH)
+
+[GP-GAN](https://github.com/wuhuikai/GP-GAN)
+
+[Boundary Finding based Multi focus Image Fusion](https://github.com/uzeful/Boundary-Finding-based-Multi-focus-Image-Fusion)
+
+[基于小波变换的多聚焦图像融合](https://blog.csdn.net/yuki_rain/article/details/56672421)
 
 ### 运行
 
@@ -119,3 +124,19 @@ $ pip install PyQt5 pyqt5-tools numpy opencv-python opencv-contrib-python tensor
 图像融合是一个很常见的操作，但它对于处理的要求非常高,对融合后的图像希望真实自然，当前方法可以给出不错的效果但是都存在着一些问题，未来还有很大的改进空间。
 
 深度学习应用于图像融合也尝试了一些方法，但首先面临的一个问题就是如何找到合适的训练集，要给出一个数据量足够的精心融合的图像难度太大。我们看到上面两种方法中都在训练集和训练上采取了一些特殊处理，降低了对训练集的要求；其次是提取何种特征去表达图像融合程度。
+
+### 其他
+
+**多焦点图像融合**
+
+除上述工作以外，该项目还尝试用泊松编辑进行多焦点图像融合（给定一组内容相同但焦点不同的图像，提取各自清晰部分并融合成新图像）的工作。为保持UI的主体性，此分支没有加入到UI中。
+
+可直接下载`Multi-Focus Image Fusion`中相关代码进行测试。提供了两组对比结果供参考。
+
+**比较结果**
+
+泊松编辑：可以清晰保留焦点的内容，但是合成效果取决于手动选取区域的精细程度。
+
+基于小波变换的方法：通过小波保留每个像素的信息，并按照自定方法进行选择，效果较好，但是因不断下采样，因此会丢失一些细节。
+
+基于边界寻找的方法：焦点处的内容较好地得到保留，但是由于一些图像的边界分别不清晰，在边界处会有一定模糊，总体较好。
