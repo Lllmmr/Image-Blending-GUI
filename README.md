@@ -6,6 +6,11 @@
 
 简化版（仅保留泊松编辑功能）见：[Poisson Image Editing UI](https://github.com/Lllmmr/Poisson-Image-Editing-UI)
 
+**Reference:**
+**Deep Image Harmonization**: https://github.com/bcmi/Image_Harmonization_Datasets/tree/master/DIH
+
+**GP-GAN**:https://github.com/wuhuikai/GP-GAN
+
 ### 运行
 
 运行该项目需要`python3`环境
@@ -13,7 +18,7 @@
 并安装`pyqt5`,`pyqt5-tools`, `numpy`, `opencv`, `opencv-contrib` ,  `tensorflow`, `scikit-image` , `chainer`
 
 ```
-$ pip install PyQt5 pyqt5-tools numpy opencv-python opencv-contrib-python tensorflow==1.14.0 scikit-image chainer
+$ pip install PyQt5 pyqt5-tools numpy opencv-python opencv-contrib-python tensorflow==1.14.0 scikit image chainer
 ```
 
 （注：最好使用1.14.0版本的tensorflow，其他版本可能会存在问题）
@@ -89,3 +94,28 @@ $ pip install PyQt5 pyqt5-tools numpy opencv-python opencv-contrib-python tensor
 #### 拓展功能：
 
 `File->Save Mask/Save Src`可将经过缩放、裁剪后的源图像及其单通道mask保存到本地，方便其他未加入GUI的算法获取ROI
+
+#### 三种方法比较：
+
+|                 mask                  |             copy-and-past             |                   possion                   |                            GP-GAN                            |                   DIH                   |
+| :-----------------------------------: | :-----------------------------------: | :-----------------------------------------: | :----------------------------------------------------------: | :-------------------------------------: |
+|         ![](images/1mask.png)         |       ![1cop](images/1cop.jpg)        |      ![poisson1](images/poisson1.jpg)       | ![GP-r1](images/GP-r1.jpg) |      ![dih_r1](images/dih_r1.jpg)       |
+|      ![2mask](images/2mask.png)       |       ![2cop](images/2cop.jpg)        |      ![poisson2](images/poisson2.jpg)       | ![GP-r2](images/GP-r2.jpg) |      ![dih_r2](images/dih_r2.jpg)       |
+| ![3mask](images/3mask.png) |  ![3cop](images/3cop.jpg)  | ![poisson3](images/poisson3.jpg) | ![GP-r3](images/GP-r3.jpg) | ![dih_r3](images/dih_r3.jpg) |
+| ![4mask](images/4mask.png) |  ![4cop](images/4cop.jpg)  | ![poisson4](images/poisson4.jpg) | ![GP-r4](images/GP-r4.jpg) | ![dih_r4](images/dih_r4.jpg) |
+| ![5mask](images/5mask.png) |  ![5cop](images/5cop.jpg)  | ![poisson5](images/poisson5.jpg) | ![GP-r5](images/GP-r5.jpg) | ![dih_r5](images/dih_r5.jpg) |
+| ![6mask](images/6mask.png) |  ![6cop](images/6cop.jpg)  | ![poisson6](images/poisson6.jpg) | ![GP-r6](images/GP-r6.jpg) | ![dih_r6](images/dih_r6.jpg) |
+| ![7mask](images/7mask.png) |  ![7cop](images/7cop.jpg)  | ![poisson7](images/poisson7.png) | ![GP-r7](images/GP-r7.jpg) | ![dih_r7](images/dih_r7.jpg) |
+| ![8mask](images/8mask.png) | ![8mask](images/8mask.png) | ![poisson8](images/poisson8.jpg) | ![GP-r8](images/GP-r8.png) | ![dih_r8](images/dih_r8.jpg) |
+
+#### 比较结果
+
+**泊松编辑**： 主要关注在消除图像融合后的接缝上，在颜色差异很大是会出现不自然的情况，但总的来说泊松编辑效果不错。
+
+**GP-GAN:** 在前两组对比中效果不错，可能由于图片重建过程的原因在一些例子中出现不自然的光斑，物体出现透明化情况。
+
+**Deep Image Harmonization:** 由于使用的方法无法较好处理接缝，在物体抠的比较好的情况下表现尚可，图像分割现在已经不是一个很困难的问题。但这种方法仍存在分辨率的问题，即使采用引导滤波，恢复成原分辨率后仍可能产生模糊。
+
+图像融合是一个很常见的操作，但它对于处理的要求非常高,对融合后的图像希望真实自然，当前方法可以给出不错的效果但是都存在着一些问题，未来还有很大的改进空间。
+
+深度学习应用于图像融合也尝试了一些方法，但首先面临的一个问题就是如何找到合适的训练集，要给出一个数据量足够的精心融合的图像难度太大。我们看到上面两种方法中都在训练集和训练上采取了一些特殊处理，降低了对训练集的要求；其次是提取何种特征去表达图像融合程度。
