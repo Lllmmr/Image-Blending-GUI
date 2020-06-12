@@ -6,7 +6,7 @@
 
 简化版（仅保留泊松编辑功能）见：[Poisson Image Editing UI](https://github.com/Lllmmr/Poisson-Image-Editing-UI)
 
-####参考内容
+#### 参考内容
 
 [Deep Image Harmonization](https://github.com/bcmi/Image_Harmonization_Datasets/tree/master/DIH)
 
