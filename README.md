@@ -30,9 +30,7 @@ $ pip install PyQt5 pyqt5-tools numpy opencv-python opencv-contrib-python tensor
 
 并下载模型
 
-[北大网盘](https://disk.pku.edu.cn:443/link/59A1E10766F04EE5CEFAD5C5395B5166)（有效期至2020/7/3）
-
-[百度网盘](https://pan.baidu.com/s/1cEWvf6Op3k4QzVPQzcovKw)（ 提取码: vkwe）
+[model](https://github.com/Lllmmr/Image-Blending-GUI/releases)
 
 下载后，将目录下`blending_gan.npz`放到`GP_GAN_blending`文件夹中
 
